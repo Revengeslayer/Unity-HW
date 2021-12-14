@@ -52,7 +52,6 @@ public class ObjectPool
     public void UnLoadData1(GameObject go)
     {
         int iCount = mData1Container.Count;
-        GameObject rgo = null;
         for (int i = 0; i < iCount; i++)
         {
             if (mData1Container[i].go == go)
