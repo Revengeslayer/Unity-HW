@@ -61,6 +61,7 @@ public class GameObjectPool                 //  singleton ªºclass
             if(currentData[i].thing==thing)
             {
                 currentData[i].thing.SetActive(false);
+                //GameObject.Find(currentData[i].thing.name).GetComponent<Path>
                 currentData[i].isUsing = false;
                 break;
             }

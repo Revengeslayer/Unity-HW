@@ -28,7 +28,7 @@ public class Main : MonoBehaviour
             {
                 GameObject thing = objectPool.LoadData();
                 thing.SetActive(true);
-                thing.transform.position = new Vector3(-25.0f, 1.13f, -25.0f);
+                thing.transform.position = new Vector3(-25.0f, 0f, -25.0f);
                 loadedObjects.Add(thing);
             }
             else
@@ -46,5 +46,6 @@ public class Main : MonoBehaviour
                 loadedObjects.RemoveAt(loadedObjects.Count-1);
             }
         }
+
     }
 }
