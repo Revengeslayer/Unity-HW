@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    GameObjectPool objectPool;
     public Object prefab;
+    private GameObjectPool objectPool;
     private List<GameObject> loadedObjects;
+    private PoolData data;
     private void Awake()
     {
         objectPool = new GameObjectPool();
@@ -46,6 +47,10 @@ public class Main : MonoBehaviour
                 loadedObjects.RemoveAt(loadedObjects.Count-1);
             }
         }
-
+        data.loadedObjects = loadedObjects;
+        data.objectPool = objectPool;
+        Path.SetData(data);
+        //loadedObjects = data.loadedObjects;
+        //objectPool = data.objectPool;
     }
 }
