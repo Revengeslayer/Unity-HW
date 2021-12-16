@@ -13,6 +13,7 @@ public class Main : MonoBehaviour
         objectPool = new GameObjectPool();
         objectPool.InitData(prefab, 15) ;
         loadedObjects = new List<GameObject>();
+        data = new PoolData();
     }
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,8 @@ public class Main : MonoBehaviour
                 thing.SetActive(true);
                 thing.transform.position = new Vector3(-25.0f, 0f, -25.0f);
                 loadedObjects.Add(thing);
+
+                
             }
             else
             {
@@ -50,7 +53,5 @@ public class Main : MonoBehaviour
         data.loadedObjects = loadedObjects;
         data.objectPool = objectPool;
         Path.SetData(data);
-        //loadedObjects = data.loadedObjects;
-        //objectPool = data.objectPool;
     }
 }

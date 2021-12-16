@@ -60,7 +60,6 @@ public class Path : MonoBehaviour
         float end_AreaZ = gameObject.transform.position.z;
         if (end_AreaX > 20.0f && end_AreaZ > 20.0f)
         {
-            Debug.Log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             objectPool.UnLoadData(gameObject);
             loadedObjects.Remove(gameObject);
         }
