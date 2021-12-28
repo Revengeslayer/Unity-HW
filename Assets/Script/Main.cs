@@ -1,30 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
     public Object prefab;
+    private Object[] prefabs;
     private GameObjectPool objectPool;
     private List<GameObject> loadedObjects;
     private PoolData data;
     private void Awake()
-    {
-        objectPool = new GameObjectPool();
-        objectPool.InitData(prefab, 15) ;
+    {        
+        if (SceneManager.GetActiveScene().buildIndex ==1)
+        {
+            LoadRes();
+            objectPool = new GameObjectPool();
+            objectPool.InitData(prefab, 15);        
+        }
         loadedObjects = new List<GameObject>();
         data = new PoolData();
     }
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().buildIndex ==1)
         {
             if (loadedObjects.Count < 10.0f)
             {
@@ -40,7 +45,7 @@ public class Main : MonoBehaviour
                 Debug.Log("º¡¤F");
             }
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && SceneManager.GetActiveScene().buildIndex == 1)
         {
            
             if(loadedObjects.Count>0)
@@ -53,5 +58,20 @@ public class Main : MonoBehaviour
         data.loadedObjects = loadedObjects;
         data.objectPool = objectPool;
         Path.SetData(data);
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    private void LoadRes()
+    {
+        prefab = Resources.Load("Prefebs/Thing/Capsule");
+        prefabs = Resources.LoadAll("Prefebs/Terrain");
+        for (int i = 0; i < prefabs.Length; i++)
+        {
+           GameObject a =  GameObject.Instantiate(prefabs[i]) as GameObject;
+        }
     }
 }

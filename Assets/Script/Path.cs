@@ -16,7 +16,6 @@ public class Path : MonoBehaviour
     }
     private void Start()
     {
-        
     }
     private void OnEnable()
     {
