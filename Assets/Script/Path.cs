@@ -54,14 +54,12 @@ public class Path : MonoBehaviour
     {      
         gameObject.transform.LookAt(wayPoint[index].transform.position);
         gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime;
-
-        float end_AreaX = gameObject.transform.position.x;
-        float end_AreaZ = gameObject.transform.position.z;
-        if (end_AreaX > 20.0f && end_AreaZ > 20.0f)
-        {
-            objectPool.UnLoadData(gameObject);
-            loadedObjects.Remove(gameObject);
-        }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        objectPool.UnLoadData(gameObject);
+        loadedObjects.Remove(gameObject);
     }
 }
