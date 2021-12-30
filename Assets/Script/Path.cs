@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
-    public GameObject[] wayPoint;
+    private static GameObject[] wayPoint;
     public float speed;
     private int index=1;
     private static GameObjectPool objectPool;
@@ -56,7 +56,23 @@ public class Path : MonoBehaviour
         gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime;
         
     }
+    public static void LoadRes()
+    {
 
+        wayPoint = new GameObject[6];
+        int count = 0;
+        Object[] prefabs = Resources.LoadAll("Prefebs/Terrain");
+        for (int i = 0; i < prefabs.Length; i++)
+        {
+            GameObject a = GameObject.Instantiate(prefabs[i]) as GameObject;
+
+            if (a.tag == "WayPoint")
+            {
+                wayPoint[count] = a;
+                count++;
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         objectPool.UnLoadData(gameObject);

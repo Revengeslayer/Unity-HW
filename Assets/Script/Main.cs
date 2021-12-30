@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Main : MonoBehaviour
 {
     public Object prefab;
-    private Object[] prefabs;
     private GameObjectPool objectPool;
     private List<GameObject> loadedObjects;
     private PoolData data;
@@ -14,7 +13,8 @@ public class Main : MonoBehaviour
     {        
         if (SceneManager.GetActiveScene().buildIndex ==1)
         {
-            LoadRes();
+            Path.LoadRes();
+            prefab = Resources.Load("Prefebs/Thing/Capsule");
             objectPool = new GameObjectPool();
             objectPool.InitData(prefab, 15);        
         }
@@ -63,15 +63,5 @@ public class Main : MonoBehaviour
     public void LoadScene()
     {
         SceneManager.LoadScene(1);
-    }
-
-    private void LoadRes()
-    {
-        prefab = Resources.Load("Prefebs/Thing/Capsule");
-        prefabs = Resources.LoadAll("Prefebs/Terrain");
-        for (int i = 0; i < prefabs.Length; i++)
-        {
-           GameObject a =  GameObject.Instantiate(prefabs[i]) as GameObject;
-        }
     }
 }
